@@ -1,0 +1,85 @@
+/* ============================================================
+   OBS Countdown Timer — style.css
+   Customise the box colours by changing the hex codes below.
+   ============================================================ */
+
+:root {
+  /* Box colours — replace these hex codes with any colours you want */
+  --box-minutes-colour: #2f4f4f; /* dark slate for the minutes box */
+  --box-seconds-colour: #1e3a8a; /* blue for the seconds box */
+
+  --text-colour: #ffffff;
+  --font-family: "Montserrat", sans-serif;
+
+  --box-size: 180px;
+  --box-gap: 16px;
+  --box-radius: 14px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-family: var(--font-family);
+  color: var(--text-colour);
+}
+
+/* Container holding the two boxes side by side */
+.timer-container {
+  display: flex;
+  gap: var(--box-gap);
+  align-items: center;
+}
+
+/* Individual number box */
+.box {
+  width: var(--box-size);
+  height: var(--box-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 132px;
+  font-weight: 700;
+  font-family: var(--font-family);
+  color: var(--text-colour);
+  border-radius: var(--box-radius);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  user-select: none;
+}
+
+#minutesBox {
+  background-color: var(--box-minutes-colour);
+}
+
+#secondsBox {
+  background-color: var(--box-seconds-colour);
+}
+
+/* ============================================================
+   Disappear animation
+   Triggered by JS adding the .disappear class once 00:00 is reached.
+   ============================================================ */
+@keyframes disappear {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+.timer-container.disappear {
+  animation: disappear 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
